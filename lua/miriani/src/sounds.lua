@@ -143,7 +143,7 @@ function DecreaseAttribute(attribute)
 -- Subtract five percent.
   local function Subtract(val)
     val =
-    val <= 0.05
+    val <= 0.06
     and 0.0
     or val - 0.05
 
@@ -179,7 +179,7 @@ function IncreaseAttribute(attribute)
 -- Add five percent.
   local function Add(val)
     val =
-    val >= 1.0
+    val >= 0.95
     and 1.0
     or val + 0.05
 
