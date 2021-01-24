@@ -45,7 +45,6 @@ function Social(wc)
     config:GetConst("sdir"), gender, wc[1], config:GetConst("ext"))
 
   -- Game shortens the social text depending on what user typed.
-
   local socialTable = utils.readdir(file) 
 
   if not socialTable then
