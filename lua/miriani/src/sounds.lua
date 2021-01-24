@@ -57,7 +57,7 @@ config:GetConst("sdir")..file.."*"..config:GetConst("ext")
     )
 
     if code ~= audio.ERROR.ok then
-      AnsiMsg("important",
+      Announce("important",
       string.format("Unable to play %s.", sfile)
       )
 
@@ -127,9 +127,9 @@ function CycleAudioGroups()
 
     if k > active_group then
       active_group = k
-      AnsiMsg("info",
+      Announce("info",
       string.format("%s control - volume: %s%%",
-      v, (config:GetAttribute(groups[k], "vol") * 100.0))
+      v, (config:GetAttribute(groups[k], "vol") * 100.0)), 1
       )
       break
     end -- if
@@ -154,9 +154,9 @@ function DecreaseAttribute(attribute)
 
   if group ~= config:GetConst("default_audio") then
   config:SetAttribute(group, attribute, val)
-    return AnsiMsg("info", string.format("%s volume: %s%%", group,
+    return Announce("info", string.format("%s volume: %s%%", group,
     (val * 100.0)
-    ))
+    ), 1)
   end -- if
 
   for k,v in pairs(config:GetAudioGroups()) do
@@ -167,9 +167,9 @@ function DecreaseAttribute(attribute)
     )
   end -- for
 
-  return AnsiMsg("info", string.format("%s volume: %s%%", group,
+  return Announce("info", string.format("%s volume: %s%%", group,
   (val  * 100.0)
-  ))
+  ), 1)
 end -- DecreaseAttribute
 
 function IncreaseAttribute(attribute)
@@ -190,9 +190,9 @@ function IncreaseAttribute(attribute)
 
   if group ~= config:GetConst("default_audio") then
   config:SetAttribute(group, attribute, val)
-    return AnsiMsg("info", string.format("%s volume: %s%%", group,
+    return Announce("info", string.format("%s volume: %s%%", group,
     (val * 100.0)
-    ))
+    ), 1)
   end -- if
 
   for k,v in pairs(config:GetAudioGroups()) do
@@ -203,17 +203,17 @@ function IncreaseAttribute(attribute)
     )
   end -- for
 
-  return AnsiMsg("info", string.format("%s volume: %s%%", group,
+  return Announce("info", string.format("%s volume: %s%%", group,
   (val  * 100.0)
-  ))
+  ), 1)
 end -- IncreaseAttribute
 
 function ToggleMute()
 
   if not config:ToggleMute() then
-    AnsiMsg("info", "Sounds unmuted.")
+    Announce("info", "Sounds unmuted.", 1)
   else 
-    AnsiMsg("info", "Sounds muted.")
+    Announce("info", "Sounds muted.", 1)
   end -- if
 
   end -- ToggleMute

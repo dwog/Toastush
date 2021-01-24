@@ -10,7 +10,7 @@ local path = require("pl.path")
 
 -- Table of triggers.
 local namespace = {
-
+  "hooks"
 
 } -- namespace
 

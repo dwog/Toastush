@@ -12,7 +12,7 @@ local path = require("pl.path")
 -- Utilities.
 config = require("miriani.util.config")
 audio = require("miriani.util.audio")
-AnsiMsg = require("miriani.util.ansimsg")
+Announce = require("miriani.util.announce")
 mcp = require("miriani.util.mcp")
 
 -- Table of dependencies.
@@ -21,7 +21,8 @@ local namespace = {
   "sounds", -- miriani specific audio functions.
   "buffer", -- Output logging.
   "channel", -- Channel sounds.
-  "keybindings" -- Global macros.
+  "keybindings", -- Global macros.
+  "soundpack" -- Soundpack methods for negotiations.
 
 } -- namespace
 
@@ -32,6 +33,6 @@ function (i, mod)
   if path.isfile(string.format("lua/%s/%s.lua", src, mod)) then
     require(string.format("%s.%s", src, mod))
   else
-    AnsiMsg("critical", string.format("Failed to locate Miriani module %s/%s.lua.", src, mod))
+    Announce("critical", string.format("Failed to locate Miriani module %s/%s.lua.", src, mod))
   end -- if
 end ) 

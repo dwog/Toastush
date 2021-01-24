@@ -81,14 +81,16 @@
 <script>
 <![CDATA[
 require("miriani.src.include")
+require("miriani.triggers.include")
 
 function OnPluginInstall()
   assert(config:_init() == 0)
   assert(audio:_init() == 0)
+assert(package.loadlib("MushReader.dll", "luaopen_audio"))()
 end -- OnPluginInstall
 
 function OnHelp()
-  Note(GetPluginInfo(GetPluginID(), 3))
+  Note(string.format("%s", GetPluginInfo(GetPluginID(), 3)))
 end-- OnHelp
 
 function OnRegister()
@@ -98,7 +100,7 @@ end -- OnRegister
 
 function OnInfo()
   local ID = GetPluginID()
-  Note(string.format("%s  --  version %s  --  Scripting-language: %s  -- Script-time: %s seconds", GetPluginInfo(ID, 1), GetPluginInfo(ID, 19), GetPluginInfo(ID, 5), GetPluginInfo(ID, 24)))
+  nvda.say(string.format("%s  --  version %s  --  Scripting-language: %s  -- Script-time: %s seconds", GetPluginInfo(ID, 1), GetPluginInfo(ID, 19), GetPluginInfo(ID, 5), GetPluginInfo(ID, 24)))
 end -- OnInfo
 
 function OnConfigure(name, line, wc)

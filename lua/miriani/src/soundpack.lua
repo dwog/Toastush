@@ -1,4 +1,4 @@
--- @module sounds
+-- @module soundpack
 -- Provides global methods for soundpack negotiations.
 
 -- author: Erick Rosso
@@ -9,8 +9,6 @@ function SoundpackHook(name, line, wc)
   local hook = table.remove(wc, 1);
   wc = utils.split(wc[1], "|")
 
-
-  -- Clean up the string.
   table.foreach(wc,
     function(k, v)
       wc[k] = Trim(v)
@@ -49,7 +47,6 @@ function Social(wc)
   -- Game shortens the social text depending on what user typed.
 
   local socialTable = utils.readdir(file) 
-
 
   if not socialTable then
     if gender ~= "neuter" then
