@@ -127,6 +127,7 @@ function CycleAudioGroups()
 
     if k > active_group then
       active_group = k
+      Play("audio/toggle", "other")
       Announce("info",
       string.format("%s control - volume: %s%%",
       v, (config:GetAttribute(groups[k], "vol") * 100.0)), 1
@@ -154,6 +155,7 @@ function DecreaseAttribute(attribute)
 
   if group ~= config:GetConst("default_audio") then
   config:SetAttribute(group, attribute, val)
+    Play("audio/decrease", "other")
     return Announce("info", string.format("%s volume: %s%%", group,
     (val * 100.0)
     ), 1)
@@ -167,6 +169,7 @@ function DecreaseAttribute(attribute)
     )
   end -- for
 
+  Play("audio/decrease", "other")
   return Announce("info", string.format("%s volume: %s%%", group,
   (val  * 100.0)
   ), 1)
@@ -190,6 +193,8 @@ function IncreaseAttribute(attribute)
 
   if group ~= config:GetConst("default_audio") then
   config:SetAttribute(group, attribute, val)
+
+    Play("audio/increase", "other")
     return Announce("info", string.format("%s volume: %s%%", group,
     (val * 100.0)
     ), 1)
@@ -203,6 +208,7 @@ function IncreaseAttribute(attribute)
     )
   end -- for
 
+  Play("audio/decrease", "other")
   return Announce("info", string.format("%s volume: %s%%", group,
   (val  * 100.0)
   ), 1)
