@@ -13,7 +13,7 @@ function TMenu(option)
 
   local function SoundEffect(name)
     Play(
-      string.format("audio/%s", name), "other")
+      string.format("audio/%s", name))
   end -- SoundEffect
 
   if type(main_menu) ~= 'table' then

@@ -12,7 +12,7 @@ local streamtable = {}
 function Play(file, group, interrupt, rp)
 
   local mem = false -- All audio will be static.
-
+  group = group or "other"
   if config:IsMute() then
     return -- Audio is muted.
   end -- if
