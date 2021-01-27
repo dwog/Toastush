@@ -6,8 +6,8 @@
 
 ---------------------------------------------
 
-function TMenu(option)
 
+function TMenu(option)
   local main_menu = config:RenderMenuList(option)
   local title, choice = string.format("%s Manager - version %s", GetPluginName(), config:GetVersion())
 
@@ -39,7 +39,6 @@ function TMenu(option)
 
       -- Step our user through a sequence to determine the value type.
       if config:IsOption(choice) then
-
         -- Interface for boolean value.
         local yes_no = utils.msgbox("Select an option.", title, "yesnocancel", "?")
         config:SetOption(choice, yes_no ~= nil and yes_no ~= "cancel" and yes_no or config:GetOption(choice))

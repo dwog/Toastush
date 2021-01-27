@@ -22,8 +22,8 @@ local namespace = {
   "buffer", -- Output logging.
   "channel", -- Channel sounds.
   "keybindings", -- Global macros.
-  "soundpack" -- Soundpack methods for negotiations.
-
+  "soundpack", -- Soundpack methods for negotiations.
+  "filter" -- Spam throttle.
 } -- namespace
 
 
