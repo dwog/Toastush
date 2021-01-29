@@ -11,7 +11,8 @@ local path = require("pl.path")
 -- Table of triggers.
 local namespace = {
   "hooks",
-  "filters"
+  "filters",
+  "communication"
 } -- namespace
 
 local src = "miriani/triggers"

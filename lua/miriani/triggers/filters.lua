@@ -448,6 +448,7 @@ script="Filter"
    send_to="14"
    omit_from_output="y"
    omit_from_log="y"
+  >
   <send>Play("ship/combat/reload", "combat")</send>
   </trigger>
 </triggers>

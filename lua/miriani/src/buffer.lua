@@ -7,13 +7,12 @@
 
 ---------------------------------------------
 
-function Buffer(line, ...)
+function Buffer(line, wc)
   -- Check if plugin is installed.
   assert (IsPluginInstalled ("6000a4c6f0e71d31fecf523d"), "channel_history could not be found")
-  assert(Execute ("history_add all="..line))
 
   -- add record table of channel arguments
-   for k,v in ipairs ({...}) do
-    assert(Execute ("history_add "..v.."="..line))
+   for k,v in ipairs(wc) do
+    Execute("history_add "..v.."="..line)
   end -- for loop
-end -- AddHistory
+end -- Buffer

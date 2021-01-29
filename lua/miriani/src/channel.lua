@@ -11,17 +11,14 @@
 local path = require("pl.path")
 
 function Channel(name, line, wc)
-
+  local spath = string.format(
+    "%scomm/", config:GetConst("sdir"))
   -- First index to wc is buffer name.
--- Second index to wc is file name.
-
-  Buffer(line, wc[1])
-
   if path.isfile(
-  path.join(config:GetConst("sdir").."channels/", wc[1])..config:GetConst("ext")) then
-    Play("channels/"..wc[1], "communication")
+    path.join(spath, wc[1])..config:GetConst("ext")) then
+    Buffer(line, wc)
+    Play("comm/"..wc[1], "communication")
   else
-    Play("channels/default", "communication")
+    Play("comm/default", "communication")
 end -- if
-
 end -- Channel

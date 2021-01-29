@@ -25,7 +25,7 @@ function Config:_init()
     if self.SETTINGS and self.AUDIO and self.ERROR and self.CONST then
       return self.ERROR.ok
     else
-      return self.ERROR.not_init
+      return const.ERROR.not_init
     end -- if
   end -- Initialize
 
@@ -36,27 +36,40 @@ function Config:_init()
         error = Initialize(GLOBAL_CONFIG)
     end -- do
 
-  local current_config = const.SETTINGS
-    table.foreach(current_config,
-    function(k, v)
-      -- Update keys.
-      if (not self.SETTINGS[k]) or (self.SETTINGS[k].descr ~= current_config[k].descr) or (self.SETTINGS[k].group ~= current_config[k].group) or (type(self.SETTINGS[k].value) ~= type(current_config[k].value)) then
-        self.SETTINGS[k] = v
-      end -- if
-    end ) -- anon 
+    local current_settings = const.SETTINGS
+    local current_audio = const.AUDIO
+    -- Update keys.
+    table.foreach(current_settings,
+      function(k, v)
+        if (not self.SETTINGS[k]) or (self.SETTINGS[k].descr ~= current_settings[k].descr) or (self.SETTINGS[k].group ~= current_settings[k].group) or (type(self.SETTINGS[k].value) ~= type(current_settings[k].value)) then
+          self.SETTINGS[k] = v
+        end -- if
+      end ) -- anon 
 
     table.foreach(self.SETTINGS,
-    function(k)
+      function(k)
+        -- Remove missing keys.
+        if (not current_settings[k]) then
+          self.SETTINGS[k] = nil
+      end -- if
+    end ) -- anon
 
-   -- Remove missing keys.
-      if (not current_config[k]) then
-        self.SETTINGS[k] = nil
+    table.foreach(current_audio,
+      function(k, v)
+        if (not self.AUDIO[k]) then
+          self.AUDIO[k] = v
+        end -- if
+      end ) -- anon 
+
+    table.foreach(self.AUDIO,
+      function(k)
+        if (not current_audio[k]) then
+          self.AUDIO[k] = nil
       end -- if
     end ) -- anon
 
   else
-  
-  error= Initialize(const)
+    error= Initialize(const)
   end -- if
 
   return error
